@@ -1,0 +1,17 @@
+
+*.tfrecords
+__pycache__
+tf_log
+*.json
+model
+test_cosine_decay.py
+label*
+seg_label*
+preprocessed_label
+ref_doc
+*.tfrecord
+*_labels.txt
+*.jpg
+*tf_log
+pretrain_model
+/data/
