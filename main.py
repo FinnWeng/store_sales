@@ -214,9 +214,14 @@ def pd_preprocess(train, test, stores, oil, transactions, steps):
     test_x = make_time_series_array(test_x, steps)
     train_y = train_y[:, steps+1:, :]
 
+    train_x = np.reshape(train_x, [-1, train_x.shape[2],train_x.shape[3]])
+    train_y = np.reshape(train_y, [-1,train_y.shape[2] ])
+
     print("train_x:",train_x.shape)
     print("test_x:",test_x.shape)
     print("train_y:",train_y.shape)
+
+    test_x = np.reshape(test_x, [-1, test_x.shape[2], test_x.shape[3]])
 
 
     return train_x, train_y, test_x
