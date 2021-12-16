@@ -195,13 +195,14 @@ def pd_preprocess(train, test, stores, oil, transactions, steps):
     # print("test_x:",test_x.shape)
 
     train_x = np.reshape(train_x, [-1, 1684,train_x.shape[-1]])
-    test_x = np.reshape(test_x, [-1, 16, test_x.shape[-1]])
+    train_y = np.reshape(train_y, [-1, 1684,1])
 
+    test_x = np.reshape(test_x, [-1, 16, test_x.shape[-1]])
+    
     # print("train_x:")
     # print(train_x[0])
 
-    print("train_x:",train_x.shape)
-    print("test_x:",test_x.shape)
+
 
     last_train_x = train_x[:,-steps:,:]
 
@@ -209,9 +210,12 @@ def pd_preprocess(train, test, stores, oil, transactions, steps):
 
 
     test_x = np.concatenate([last_train_x, test_x], axis = 1)
-    print("test_x:",test_x.shape)
+
     test_x = make_time_series_array(test_x, steps)
-    train_y = train_y[steps:]
+    train_y = train_y[:, steps+1:, :]
+
+    print("train_x:",train_x.shape)
+    print("test_x:",test_x.shape)
     print("train_y:",train_y.shape)
 
 
